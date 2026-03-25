@@ -88,7 +88,7 @@ func (c *Client) Get(ctx context.Context, key string) ([]byte, bool) {
 // Set stores a response in cache.
 func (c *Client) Set(ctx context.Context, key string, data []byte) {
 	if err := c.rdb.Set(ctx, c.prefix+key, data, c.ttl).Err(); err != nil {
-		log.Debug().Err(err).Str("key", key).Msg("cache set failed")
+		log.Warn().Err(err).Str("key", key).Msg("cache set failed")
 	}
 }
 
